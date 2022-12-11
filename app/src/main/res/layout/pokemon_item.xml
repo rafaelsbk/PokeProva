@@ -12,9 +12,7 @@
     android:layout_marginRight="8dp"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
-    app:layout_constraintEnd_toEndOf="Parent"
-    app:layout_constraintStart_toStartOf="Parent"
-    app:layout_constraintTop_toTopOf="Parent">
+>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
