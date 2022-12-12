@@ -2,31 +2,44 @@ package projeto.pdm.terceiraprova.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import projeto.pdm.terceiraprova.R
+import projeto.pdm.terceiraprova.api.PokemonResult
+import projeto.pdm.terceiraprova.api.RepositoryPoke
 import projeto.pdm.terceiraprova.model.Pokemon
-import projeto.pdm.terceiraprova.model.PokemonType
+import projeto.pdm.terceiraprova.viewmodel.PokemonViewModel
+import projeto.pdm.terceiraprova.viewmodel.PokemonViewModelFactory
 
 class MainActivity : AppCompatActivity() {
+    private val recyclerView by lazy {
+        findViewById<RecyclerView>(R.id.rvPokemon)
+    }
+
+    private val viewModel by lazy {
+        ViewModelProvider(this, PokemonViewModelFactory())
+            .get(PokemonViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val recyclerView = findViewById<RecyclerView>(R.id.rvPokemon)
-        val  bulba = Pokemon(
-            "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
-            1,
-            "Bulba",
-            listOf(
-                PokemonType("Pranta")
-            )
-        )
-        val pokemon = listOf(
-            bulba,bulba, bulba, bulba, bulba, bulba
-        )
-        val layoutManager = LinearLayoutManager(this)
 
-        recyclerView.adapter = AdapterPoke(pokemon)
+        viewModel.pokemons.observe(this, Observer {
+            loadRecyclerView(it as List<Pokemon>)
+        })
+    }
 
+    private fun loadRecyclerView(pokemons: List<Pokemon>) {
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = AdapterPoke(pokemons)
     }
 }
