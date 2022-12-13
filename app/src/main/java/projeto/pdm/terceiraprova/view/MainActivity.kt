@@ -2,19 +2,11 @@ package projeto.pdm.terceiraprova.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import projeto.pdm.terceiraprova.R
-import projeto.pdm.terceiraprova.api.PokemonResult
-import projeto.pdm.terceiraprova.api.RepositoryPoke
 import projeto.pdm.terceiraprova.model.Pokemon
 import projeto.pdm.terceiraprova.viewmodel.PokemonViewModel
 import projeto.pdm.terceiraprova.viewmodel.PokemonViewModelFactory
@@ -40,6 +32,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadRecyclerView(pokemons: List<Pokemon>) {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = AdapterPoke(pokemons)
+        recyclerView.adapter = RecyclerPoke(pokemons)
     }
 }

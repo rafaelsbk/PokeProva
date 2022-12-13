@@ -1,6 +1,5 @@
 package projeto.pdm.terceiraprova.api
 
-import projeto.pdm.terceiraprova.model.Pokemon
 import projeto.pdm.terceiraprova.model.PokemonType
 
 data class ApiResult (
